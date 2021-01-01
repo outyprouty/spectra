@@ -1,0 +1,111 @@
+\documentclass[10pt,a4paper,notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=4cm,top=2cm,bottom=2cm]{geometry}
+\author{Roy}
+\begin{document}
+
+
+\section{Install SPECTRUM}
+Yay. We did this!
+
+\section{Setting Up User Environment}
+The following steps will setup your BASH environment so that you can use \verb|SPECTRUM| without worrying about `clobbering' important files.
+
+\subsection{ PATH Variable}
+		This variable contains a colon-delimited list of absolute paths. Whenever a user hits \verb|RETURN| in BASH, the machine searches for an executable file with the same name in the local directory. If no such file is found, the machine searches each directory given by the list of paths in \verb|PATH|.
+		
+		Use \verb|echo $PATH| to view the current listing of these paths.
+		
+		For me, the output looks like this:
+		\begin{verbatim}
+		[proutyr1@taki-usr2 ~]$ echo $PATH
+/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/ibutils/bin:  (...)
+[proutyr1@taki-usr2 ~]$
+		\end{verbatim}
+		Your output might look slightly different depending on what modules you have loaded.
+		
+		We need to add the absolute path of \verb|SPECTRUM| to your \verb|PATH| file. By doing this, we will ensure that you can run \verb|SPECTRUM| from any directory ... such as a personal user directory!\\
+		\subsection{Find Absolute Path of SPECTRUM}
+		We compiled \verb|SPECTRUM| in the \verb|common| directory of \verb|pi_hoban|. From your home directory, navigate to \verb|hoban_common/SPECTRUM/spectrum277|. This \verb|hoban_common| is a symbolic link to a shared location on the cluster. You can tell that it is a symbolic link because a long-listing of your home directory shows an \verb|l| as the first character. 
+		
+		Once you've gone to \verb|hoban_common/SPECTRUM/spectrum277|, we can begin. Because this navigation involved a symbolic link, there are two ways to think about our current location's absolute path ... the path given to it via the link and then the *true* absolute path. Try this for yourself:
+		\begin{verbatim}
+		[proutyr1@taki-usr2 spectrum277]$ pwd
+/home/proutyr1/hoban_common/SPECTRUM/spectrum277
+[proutyr1@taki-usr2 spectrum277]$ pwd -P
+/umbc/xfs1/hoban/common/SPECTRUM/spectrum277
+[proutyr1@taki-usr2 spectrum277]$
+		\end{verbatim}
+		You can see that the two commands give different outputs! The second is the *true* absolute path. We will need to keep a copy of this to put into our \verb|PATH| variable.
+		Use the \verb|man| page for the BASH command \verb|pwd| to determine what the \verb|-P| option does. Send this to me as a message on Discord!
+		
+		\subsection{bashrc File}
+		The \verb|.bashrc| file is a hidden file that lives in your home directory. Every user has one. The `bash'  in \verb|.bashrc| is for BASH (who knew!) and the `rc' is for `run command'. This file therefore contains a listing of commands that are run \textit{each time you log-in and use BASH}. You can think of this file as setting up your BASH environment.
+		
+		\subsection{Updating PATH in bashrc}
+		Use your favorite text editor and open your \verb|.bashrc| file for editing. Remember, it's in your home directory!
+		
+		Toward the bottom, place the following line:
+		\verb|export PATH=<SPECTRUM-PATH>:$PATH|
+
+		Now, save and exit the file and run this command: \verb|source ~/.bashrc|.
+						
+		The \verb|export| command take the following variable definition and makes it apply to your entire BASH environment. 
+		
+		In BASH, there are no spaces between the variable name and the assignment, so that's not just my white-space preference :)
+		Either way, we then assign \verb|PATH| to be equal to that absolute path we determined for \verb|SPECTRUM| \textit{in addition to} a `:' to delimit this path from the listing of all other paths already in \verb|PATH|, that's why we added \verb|$PATH| to the end there!
+		
+		For example, if I invent a variable \verb|tmp| and set it equal to the text `bar', like this: \verb|tmp=`bar'|. I can then \textit{prepend} the variable assignment with `foo' by running the following: \verb|tmp=`foo'$tmp|.
+		Try it yourself:
+		\begin{verbatim}
+		[proutyr1@taki-usr2 ~]$ tmp=`bar'
+[proutyr1@taki-usr2 ~]$ tmp=`foo'$tmp
+[proutyr1@taki-usr2 ~]$ echo $tmp
+foobar
+[proutyr1@taki-usr2 ~]$ 			
+		\end{verbatim}
+		
+		By \textit{prepending} \verb|SPECTRUM|'s absolute path to our \verb|PATH| variable, we ensure that the executable \verb|spectrum| is found by the machine when we run it!
+
+		The \verb|source| command just tells BASH to run the \verb|.bashrc| file without logging out and logging back in. It's a shortcut ;)
+
+	If you \verb|echo| your \verb|PATH| variable, it should now start with the absolute path to \verb|SPECTRUM|. Check it!			
+		
+		\subsection{Create User Directory for SPECTRUM}
+		Now you should be able to run \verb|spectrum| (the executable we compiled!) from \textit{anywhere}! So  next we should navigate to \verb|hoban_user| from your home directory. This is another symbolic link that `links' you to a personal directory inside the research storage space. Check this with \verb|pwd| vs \verb|pwd -P|. Send me a copy of the output as you do it! :)
+		
+		You may not have anything in this user directory. That's fine! Let's add a directory. Make a directory with \verb|mkdir <DIRECTORY-NAME>|. Name it whatever you'd like, but something more like `spectrumProj' and less like `someDirectory' is preferred.
+		
+		Now navigate to that new directory.
+		
+		Hooray! This should be the place where you run spectrum, save intermediate files and plots, and generally do your work. No one else has access to this directory, so you can freely modify files and create them here. Also feel free to create more directories in whatever way makes the most sense for your workflow. I am always sure to remember to keep good notes or a \verb|README| file to ensure that I  tell future-Roy what past-Roy was thinking when I created this directory or set of files.
+		
+		\subsection{Getting Necessary Files in Place}
+		Now try to run \verb|spectrum|. If all goes well, it should run and begin to prompt you for the necessary input files. If those files are not in the directory where you are when you run \verb|spectrum|, you will need to \textbf{COPY} them into this user directory. Please make sure not to remove them from the original location :)
+		
+		For example, the atmosphere, line list file, and some other files will need to be copied to the user directory you created.
+		
+		You might copy the Vega atmosphere file to your current directory like this:\\
+		\verb|cp ~/hoban_common/SPECTRUM/spectrum277/vega.mod .|\\
+		
+		Where the `.' just means `where I am now'. Remember that the \verb|~| is a shortcut to your home directory.
+
+	To be clear, you'll need to do some detective work on your own for this last step. Run \verb|spectrum| a few times and see what it complains about. Then move those files over until it runs!		
+		
+		Any questions?
+		
+		I am eternally available for help! I promise to respond to any questions as soon as I'm able!
+		
+\section{TL;DR}
+	\begin{verbatim}
+				[proutyr1@taki-usr2 ~]$ ./hoban_common/scripts/mkSpectrumEnv 
+/umbc/xfs1/hoban/users/proutyr1/stellarSpectra is now available!
+[proutyr1@taki-usr2 ~]$
+	\end{verbatim}
+	
+	This does all of the important commands, but no learning takes place! :( 
+\end{document}

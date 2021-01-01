@@ -37,6 +37,22 @@ def plotFunction(args, f, labels, title, imageName):
 
 
 def planckFunction(wl, Teff):
+    """Calculate value of Planck Function. Units below.
+    
+    Parameters:
+    wl (list or array): Values of wavelength to calculate Planck
+        Function on. [Angstrom, 1e-10m]
+    Teff (int or float): Value of effective temperature. [Kelvin]
+
+    Returns:
+    Float or array of Flots with values of Planck Function. 
+    Same shape as wl. [We-10 sr^-1 m^-2 Ang^-1]
+
+    Notes:
+    Used https://www.spectralcalc.com/blackbody_calculator/blackbody.php
+         to verify results
+    """
+
     scalar      = 2 * h * c * c / power(wl, 5.0)
 
     expArgs     = h*c/(kB*Teff*wl)
@@ -44,8 +60,10 @@ def planckFunction(wl, Teff):
     partition   = power( exp(expArgs) - 1.0 , -1)
 
     return scalar * partition
-
     
 def plotSpectrumOutput(spectrumOutputFile, Teff, metalicity, logg, imageName):
+    pass
+
+def plotSpectrumOverPlanck(spectrumOutputFile, Teff, metalicity, logg, imageName):
     pass
 

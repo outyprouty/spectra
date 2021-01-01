@@ -1,0 +1,21 @@
+from spectraFuncs import plotFunction
+from numpy import linspace
+from spectraFuncs import planckFunction
+from spectraFuncs import c
+
+def g(x, m, b):
+    return m*x + b
+
+x = linspace(0,10)
+
+plotFunction([x,2,5], g, ['x','g'], 'Test of Linear Function, g', 'testImg')
+
+#Start at 300 [Ang] and go to 15 000 [Ang].
+#  What visible colors are represented here?
+wl = linspace(300,15000,1000)
+
+plotFunction([wl, 5800], planckFunction, ['Wavelength [Ang]', 'Specific Int [We-10 sr^-1 m^-2 Ang^-1] '], 'Planck Function for Sun', 'planckTest')
+
+print("Here is the documentation for the planckFunction:\n" + planckFunction.__doc__)
+
+print("The value for the speed of light is %g Angstrom per second."%c)
