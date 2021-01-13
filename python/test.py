@@ -1,8 +1,11 @@
-from spectraFuncs import plotFunction
+from spectraFuncs import *
 from numpy import linspace
-from spectraFuncs import planckFunction
-from spectraFuncs import c
 
+
+plotSpectrumOutput( "vega_full.spc", 9400, 3.90, -0.50, "vega"  )
+plotSpectrumOutput_waveLen("vega_full.spc", 9400, 3.90, -0.50, [8000.0, 8006.8], 1.0, "vega_NaI")
+
+"""
 def g(x, m, b):
     return m*x + b
 
@@ -19,3 +22,5 @@ plotFunction([wl, 5800], planckFunction, ['Wavelength [Ang]', 'Specific Int [We-
 print("Here is the documentation for the planckFunction:\n" + planckFunction.__doc__)
 
 print("The value for the speed of light is %g Angstrom per second."%c)
+
+"""
