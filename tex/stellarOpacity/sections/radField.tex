@@ -13,9 +13,9 @@
     \delta E \approx E_\lambda \dd{\lambda} = \dd{E}
     $$
 
-  The specific intensity therefore represents this amount of spectral, radiative energy that passes perpendicularly across an oriented area element ($\dd{^2\vec{S}}$) in unit time ($\dd{t}$) confined to a solid angle element ($\dd{^2\Omega}$).
+  The specific intensity therefore represents this amount of spectral, radiative energy that passes perpendicularly across an oriented area element ($\dd{^2\vec{S}}$) in unit time ($\dd{t}$) confined to a solid angle element ($\dd{^2\Omega}$). In the arguments of $I_\lambda$ is the location vector $\vec{r}$ locating the oriented area element $\dd{^2 S}$, $\hat{n}$ representing the direction or orientation of the differential solid angle element, $\lambda$ the spectral location, and $t$ the time.
 
-  The appearance of the $\cos{\theta}$ term in the denominator owes to the deconstruction of the oriented area element into its magnitude and direction. That is, the general oriented area element can be written as $\dd{^2\vec{S}} = \dd{^2S}\cdot \hat{s}$ with $\hat{s}$ representing the unit normal to the area element. We discussed this notation in spherical coordinates (i.e., \ref{eqn:sphereAreaElem}), but the potential orientation of an area element extends to all coordiante systems. Since the specific intensity is confined to a differential solid angle ($\dd{^2\Omega}$), the direction of the radiation is given by $\hat{n}$. For reasons we will discuss below, it is generally convienient to align the direction of propogation to the polar axis (or $z$-axis). Therefore, $\dd{^2\vec{S}}\dd{^2\Omega}$
+  The appearance of the $\cos{\theta}$ term in the denominator owes to the deconstruction of the oriented area element into its magnitude and direction. That is, the general oriented area element can be written as $\dd{^2\vec{S}} = \dd{^2S}\cdot \hat{s}$ with $\hat{s}$ representing the unit normal to the area element. We discussed this notation in spherical coordinates (i.e., \ref{eqn:sphereAreaElem}), but the potential orientation of an area element extends to all coordiante systems. Since the specific intensity is confined to a differential solid angle ($\dd{^2\Omega}$), the direction of the radiation is given by $\hat{n}$. For reasons we will discuss below, it is generally convienient to align the direction of propogation to the polar axis (or $z$-axis). Therefore, $\dd{^2\vec{S}}\dd{^2\Omega}$ is equivalent to $\dd{^2S}\dd{^2\Omega}\hat{s}\cdot\hat{n}$ and finally $\dd{^2S}\dd{^2\Omega}\cos{\theta}$. With $\theta$ defining the angle between the propogation direction ($\hat{n}$) and the orientation of the oriented area element ($\hat{s}$).
 
 
 \subsection{Invariance}
@@ -27,13 +27,56 @@
 
   That is, $\dd{^2\Omega} = \frac{\dd{^2\vec{S'}}}{r^2}$ and $\dd{^2\Omega'} = \frac{\dd{^2\vec{S}}}{r^2}$, both by \ref{eqn:solidAngle}.
 
-  So, by conservation of energy, $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} = I'_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S'} \cos{\theta'}\dd{^2\Omega'}$. And $I_\lambda = I'_\lambda$. 
-
-
-
-
+  So, by conservation of energy, $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} = I'_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S'} \cos{\theta'}\dd{^2\Omega'}$. And $I_\lambda = I'_\lambda$.
 
 \section{Flux-Vector}
+
+  Flux is a vector-valued quantity representing the amount of spectral, radiative energy that passes perpendicularly across an oriented area element in unit time.
+
+\begin{equation}
+  \vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t) = \oint_\Omega I_\lambda(\vec{r}, \lambda, t, \hat{n})\dd{^2\Omega} \label{eqn:totalFlux}
+\end{equation}
+
+In the above, it is again the `hidden' $\hat{n}$ within $\dd{^2\Omega}$ that yields a vector-valued quantity.
+
+With the $\vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t)$ representable as a Cartesian vector:
+
+$$
+  \vec{\mathcal{F}}_\lambda = \mathcal{F}_{\lambda,x}\hat{x} + \mathcal{F}_{\lambda,y}\hat{y} + \mathcal{F}_{\lambda,z}\hat{z}
+$$
+
+Dropping the spectral ($\lambda$) subscript for ease only for the moment...
+$$
+  \vec{\mathcal{F}} = \mathcal{F}_x\hat{x} + \mathcal{F}_y\hat{y} + \mathcal{F}_z\hat{z}
+$$
+
+$$
+  \vec{\mathcal{F}} = \oint_\Omega I_\lambda\dd{^2\Omega}\hat{x} + \oint_\Omega I_\lambda\dd{^2\Omega}\hat{y} + \oint_\Omega I_\lambda\dd{^2\Omega}\hat{z}
+$$
+
+Expanding the differential solid angle reveals the $\hat{n}$.
+
+$$
+  \dd{^2\Omega} = \sin{\theta}\dd{\theta}\dd{\phi}\hat{n}
+$$
+
+At this point it is useful to make use of the substitution $\mu = \cos{\theta}$ and $\dd{\mu} = -\sin{\theta}\dd{\theta}$.
+
+$$
+  \dd{^2\Omega} = -\dd{\mu}\dd{\phi}\hat{n}
+$$
+
+Therefore,
+\begin{align*}
+  \hat{n}\cdot\hat{x} &= \sqrt{(1-\mu^2)}\cos{\phi}\\
+  \hat{n}\cdot\hat{y} &= \sqrt{(1-\mu^2)}\sin{\phi}\\
+  \hat{n}\cdot\hat{z} &= \mu\\
+\end{align*}
+
+
+
+
+
 
 \section{Radiative Flux}
 
