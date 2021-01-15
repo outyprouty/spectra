@@ -1,3 +1,7 @@
+"""
+With standard 'pyplotting' module created for pi_hoban users.
+"""
+
 from matplotlib import pyplot as plt
 from numpy import sqrt, exp, log, power, loadtxt
 
