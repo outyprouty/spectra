@@ -1,83 +1,199 @@
-\section{Specific Intensity}
+\section{Specific Intensity}\label{s:specificInt}
 
-  The Specific Intensity is a differential, scalar quantity \footnote{In radiometry, this quantity is called the spectral radiance}:
+  The Specific Intensity is a differential, scalar quantity \footnote{In radiometry, this quantity is called the spectral radiance.}:
 
   $$
   \frac{\dd I}{\dd \lambda} = I_\lambda(\vec{r}, \hat{n}, \lambda, t) =
     \frac{\delta E}{\dd{\lambda} \dd{t} \dd{^2 S} \cos{\theta}\dd{^2\Omega} }
   $$
 
-  Where $\delta E$ is the amount of energy transported by radiation belonging to the wavelength range $[\lambda, \lambda + \dd{\lambda}]$. That is,
-
+  Where $\delta E$ is the amount of energy transported by radiation belonging to the wavelength range $[\lambda, \lambda + \dd{\lambda}]$.
+  Equivalently ...
     $$
     \delta E \approx E_\lambda \dd{\lambda} = \dd{E}
     $$
 
-  The specific intensity therefore represents this amount of spectral, radiative energy that passes perpendicularly across an oriented area element ($\dd{^2\vec{S}}$) in unit time ($\dd{t}$) confined to a solid angle element ($\dd{^2\Omega}$). In the arguments of $I_\lambda$ is the location vector $\vec{r}$ locating the oriented area element $\dd{^2 S}$, $\hat{n}$ representing the direction or orientation of the differential solid angle element, $\lambda$ the spectral location, and $t$ the time.
+  In the arguments of $I_\lambda$ reside the location vector $\vec{r}$ locating the oriented area element $\dd{^2 S}$, $\hat{n}$ representing the direction or orientation of the differential solid angle element, $\lambda$ the spectral location, and time $t$.
 
-  The appearance of the $\cos{\theta}$ term in the denominator owes to the deconstruction of the oriented area element into its magnitude and direction. That is, the general oriented area element can be written as $\dd{^2\vec{S}} = \dd{^2S}\cdot \hat{s}$ with $\hat{s}$ representing the unit normal to the area element. We discussed this notation in spherical coordinates (i.e., \ref{eqn:sphereAreaElem}), but the potential orientation of an area element extends to all coordiante systems. Since the specific intensity is confined to a differential solid angle ($\dd{^2\Omega}$), the direction of the radiation is given by $\hat{n}$. For reasons we will discuss below, it is generally convienient to align the direction of propogation to the polar axis (or $z$-axis). Therefore, $\dd{^2\vec{S}}\dd{^2\Omega}$ is equivalent to $\dd{^2S}\dd{^2\Omega}\hat{s}\cdot\hat{n}$ and finally $\dd{^2S}\dd{^2\Omega}\cos{\theta}$. With $\theta$ defining the angle between the propogation direction ($\hat{n}$) and the orientation of the oriented area element ($\hat{s}$).
+  The specific intensity therefore represents the amount of spectral, radiative energy that passes perpendicularly across an oriented area element ($\dd{^2\vec{S}}$) in unit time ($\dd{t}$) confined to a differential solid angle element ($\dd{^2\Omega}$).
+
+  The units of the specific intensity are $\frac{W}{m^2\AA sr}$.
 
 
-\subsection{Invariance}
+  Confining the energy to the differential solid angle implicates a propogation direction for this specific intensity, namely $\hat{n}$ as discussed in section \ref{s:solidAngle}.
+
+  The $\cos{\theta}$ term in the denominator owes to the projection of the differential area element onto the direction of energy propogation.
+  That is, the general oriented area element can be written as $\dd{^2\vec{S}} = \dd{^2S}\cdot \hat{s}$ with $\hat{s}$ representing the unit normal to the area element.
+  We discussed this notation in spherical coordinates (i.e., \ref{eqn:sphereAreaElem}).
+  For reasons we will discuss below, it is generally convienient to align the direction of propogation to the polar axis (or $z$-axis).
+  Therefore, $\dd{^2\vec{S}} \dd{^2\Omega}$ is equivalent to $\dd{^2S}\dd{^2\Omega}\hat{s}\cdot\hat{n}$ and finally $\dd{^2S}\dd{^2\Omega}\cos{\theta}$.
+  With $\theta$ defining the angle between the propogation direction ($\hat{n}$) and the orientation of the oriented area element ($\hat{s}$).
+
+\subsection{Invariance}\label{s:invariantIntensity}
   Importantly, the use of the solid angle in the development of the specific intensity enables the quantity to be independent of the distance between the source and the observer\footnote{Provided there are no sources or sinks of radiant energy along $\hat{n}$}.
 
   As an illustrative example without illustration, take $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} \cos{\theta}\dd{^2\Omega}$ as the amount of spectral, radiative energy that passes perpendicularly across an oriented area element $\dd{^2\vec{S}}$ in unit time confined to a solid angle element $\dd{^2\Omega}$.
 
   Some distance $r$ away from $\dd{^2\vec{S}}$ is another oriented area element $\dd{^2\vec{S'}}$. As seen from $\dd{^2\vec{S'}}$, $\dd{^2\vec{S}}$ subtends a solid angle element $\dd{^2\Omega}$ and from $\dd{^2\vec{S}}$, $\dd{^2\vec{S'}}$ subtends a solid angle element $\dd{^2\Omega'}$.
 
-  That is, $\dd{^2\Omega} = \frac{\dd{^2\vec{S'}}}{r^2}$ and $\dd{^2\Omega'} = \frac{\dd{^2\vec{S}}}{r^2}$, both by \ref{eqn:solidAngle}.
+  That is, $\dd{^2\Omega} = \frac{\dd{^2\vec{S'}}}{r^2}$ and $\dd{^2\Omega'} = \frac{\dd{^2\vec{S}}}{r^2}$, both by our definition of solid angle \ref{eqn:solidAngle}.
 
-  So, by conservation of energy, $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} = I'_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S'} \cos{\theta'}\dd{^2\Omega'}$. And $I_\lambda = I'_\lambda$.
+  So, by conservation of energy, $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S}\cos{\theta}\dd{^2\Omega} = I'_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S'} \cos{\theta'}\dd{^2\Omega'}$.
 
-\section{Flux-Vector}
+  And $I_\lambda = I'_\lambda$.
+
+  Therefore, the specific intesity is spatially invariant.
+
+\section{Flux-Vector}\label{s:fluxVector}
 
   Flux is a vector-valued quantity representing the amount of spectral, radiative energy that passes perpendicularly across an oriented area element in unit time.
 
-\begin{equation}
-  \vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t) = \oint_\Omega I_\lambda(\vec{r}, \lambda, t, \hat{n})\dd{^2\Omega} \label{eqn:totalFlux}
-\end{equation}
+  The flux is measured in units of $\frac{W}{m^2 \AA}$.
 
-In the above, it is again the `hidden' $\hat{n}$ within $\dd{^2\Omega}$ that yields a vector-valued quantity.
+  \begin{equation}
+    \vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t) = \int_\Omega I_\lambda(\vec{r}, \lambda, t, \hat{n})\dd{^2\Omega}\hat{n} \label{eqn:totalFlux}
+  \end{equation}
 
-With the $\vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t)$ representable as a Cartesian vector:
+  In the above, it is the implied propogation direction $\hat{n}$ associated with $\dd{^2\Omega}$ that yields a vector-valued quantity.
 
-$$
-  \vec{\mathcal{F}}_\lambda = \mathcal{F}_{\lambda,x}\hat{x} + \mathcal{F}_{\lambda,y}\hat{y} + \mathcal{F}_{\lambda,z}\hat{z}
-$$
+  With the $\vec{\mathcal{F}}_\lambda(\vec{r}, \lambda, t)$ representable as a Cartesian vector:
 
-Dropping the spectral ($\lambda$) subscript for ease only for the moment...
-$$
-  \vec{\mathcal{F}} = \mathcal{F}_x\hat{x} + \mathcal{F}_y\hat{y} + \mathcal{F}_z\hat{z}
-$$
+  $$
+    \vec{\mathcal{F}}_\lambda = \mathcal{F}_{\lambda,x}\hat{x} + \mathcal{F}_{\lambda,y}\hat{y} + \mathcal{F}_{\lambda,z}\hat{z}
+  $$
 
-$$
-  \vec{\mathcal{F}} = \oint_\Omega I_\lambda\dd{^2\Omega}\hat{x} + \oint_\Omega I_\lambda\dd{^2\Omega}\hat{y} + \oint_\Omega I_\lambda\dd{^2\Omega}\hat{z}
-$$
+  Dropping the spectral ($\lambda$) subscript for ease only for the moment...
+  $$
+    \vec{\mathcal{F}} = \mathcal{F}_x\hat{x} + \mathcal{F}_y\hat{y} + \mathcal{F}_z\hat{z}
+  $$
 
-Expanding the differential solid angle reveals the $\hat{n}$.
+  $$
+    \vec{\mathcal{F}} = \int_\Omega I_\lambda\dd{^2\Omega}\hat{n}\cdot\hat{x}
+    + \int_\Omega I_\lambda\dd{^2\Omega}\hat{n}\cdot\hat{y}
+    + \int_\Omega I_\lambda\dd{^2\Omega}\hat{n}\cdot\hat{z}
+  $$
 
-$$
-  \dd{^2\Omega} = \sin{\theta}\dd{\theta}\dd{\phi}\hat{n}
-$$
+  At this point it is useful to make use of the substitution $\mu = \cos{\theta}$ and $\dd{\mu} = -\sin{\theta}\dd{\theta}$.
 
-At this point it is useful to make use of the substitution $\mu = \cos{\theta}$ and $\dd{\mu} = -\sin{\theta}\dd{\theta}$.
+  Therefore,
+  \begin{align*}
+    \hat{n}\cdot\hat{x} &= \sqrt{(1-\mu^2)}\cos{\phi}\\
+    \hat{n}\cdot\hat{y} &= \sqrt{(1-\mu^2)}\sin{\phi}\\
+    \hat{n}\cdot\hat{z} &= \mu\\
+  \end{align*}
 
-$$
-  \dd{^2\Omega} = -\dd{\mu}\dd{\phi}\hat{n}
-$$
+  Substitute these relations into the previous flux vector integrals to write ...
 
-Therefore,
-\begin{align*}
-  \hat{n}\cdot\hat{x} &= \sqrt{(1-\mu^2)}\cos{\phi}\\
-  \hat{n}\cdot\hat{y} &= \sqrt{(1-\mu^2)}\sin{\phi}\\
-  \hat{n}\cdot\hat{z} &= \mu\\
-\end{align*}
+  $$
+    \vec{\mathcal{F}} =
+    \int_\Omega I_\lambda\cos{\phi}\sqrt{(1-\mu^2)}\dd{^2\Omega}
+    + \int_\Omega I_\lambda\sin{\phi}\sqrt{(1-\mu^2)}\dd{^2\Omega}
+    + \int_\Omega I_\lambda\mu\dd{^2\Omega}
+  $$
 
+  Evaluating each component over the entire $4\pi$ steradians of a sphere ...
 
+  \begin{align*}
+    \vec{\mathcal{F}}\cdot\hat{x} &= \int_{\phi=0}^{2\pi}\int_{\mu=-1}^{1} I_\lambda(\vec{r}, \lambda, t, \mu, \phi)\cos{\phi}\sqrt{(1-\mu^2)}\dd{\mu}\dd{\phi}\\
+    \vec{\mathcal{F}}\cdot\hat{y} &= \int_{\phi=0}^{2\pi}\int_{\mu=-1}^{1} I_\lambda(\vec{r}, \lambda, t, \mu, \phi)\sin{\phi}\sqrt{(1-\mu^2)}\dd{\mu}\dd{\phi}\\
+    \vec{\mathcal{F}}\cdot\hat{z} &= \int_{\phi=0}^{2\pi}\int_{\mu=-1}^{1} I_\lambda(\vec{r}, \lambda, t, \mu, \phi)\mu\dd{\mu}\dd{\phi}
+  \end{align*}
 
+  This is as far as we can go before giving more definite form to the specific intensity of a particular system.
 
+\section{Radiative Flux}\label{s:flux}
 
+  In the context of small portions of [stellar] atmospheres, we can make a single simpliying assumption.
+  Consider a plane-parallel atmosphere perhaps not unlike the volume element shown schematically in \ref{fig:cart2Sph}.
+  If the planar atmosphere is homogenous in the $x-y$ plane, only  $\vec{\mathcal{F}}\cdot\hat{z}$ can be non-zero. Since the scalar radiation field ($I_\lambda(\vec{r}, \lambda, t, \mu, \phi)$) would be symmetric with respect to the $z$ axis, there will be ray-by-ray cancellation in the net flux across a surface perpendicular to that axis of symmetry (the $x-y$ plane).
+  It is here that we decide to align the propogation direction with this axis of symmetry and slightly modify the specific intensity.
 
-\section{Radiative Flux}
+  $$
+    I_\lambda(\vec{r}, \lambda, t, \mu, \phi) \rightarrow I_\lambda(\vec{r}, \lambda, t, \mu)
+  $$
 
-\section{Observational Significance}
+  In terms of the integrals above, we take advantage of this simplification as follows:
+
+  \begin{align*}
+    \vec{\mathcal{F}}\cdot\hat{x} &= \underbrace{\int_{\phi=0}^{2\pi}\cos{\phi}\dd{\phi}}_{0}
+    \int_{\mu=-1}^{1} I_\lambda(x, \lambda, t, \mu)\sqrt{(1-\mu^2)}\dd{\mu}\\
+    \vec{\mathcal{F}}\cdot\hat{y} &= \underbrace{\int_{\phi=0}^{2\pi}\sin{\phi}\dd{\phi}}_{0}
+    \int_{\mu=-1}^{1} I_\lambda(y, \lambda, t, \mu)\sqrt{(1-\mu^2)}\dd{\mu}\\
+    \vec{\mathcal{F}}\cdot\hat{z} &= \underbrace{\int_{\phi=0}^{2\pi}\dd{\phi}}_{2\pi}
+    \int_{\mu=-1}^{1} I_\lambda(z, \lambda, t, \mu)\mu\dd{\mu}
+  \end{align*}
+
+  So only the $\vec{\mathcal{F}}\cdot\hat{z}$ term may be non-zero.
+
+  We will therefore define this scalar quantity as the \emph{total} [spectral] radiative flux in the limit of plane-parallel atmospheres with symmetry about the radial axis\footnote{Check your geometry and make sure you agree that I can call the radial axis the $z$ axis!}.
+  $$
+    F_{\lambda, tot} = 2\pi\int_{\mu=-1}^{1} I_\lambda(r, \lambda, t, \mu)\mu\dd{\mu}
+  $$
+
+  We can also define the portion of the flux that passes through the surface of a [stellar] atmosphere in the positive radial ($+r$) direction as the surface flux.
+  Check where that factor of $2$ goes!
+
+  \begin{equation}
+    F_{\lambda, surf} = \pi\int_{\mu=-1}^{1} I_\lambda(r, \lambda, t, \mu)\mu\dd{\mu} \label{eqn:surfFlux}
+  \end{equation}
+
+\section{Observational Significance}\label{s:observationSig}
+  Imagine a system where an observer measures the energy received by a star a distance, $D$ away.
+  Orient the polar/radial/$z$ axis to be along the line-of-sight.
+  Also assume that the radius of the star, $r$, is much smaller than $D$ ($r<<D$).
+  In this way, all of the observed rays of light from the star can be taken to be parallel.
+
+  Any ray of specific intensity originating from the a surface element ($\dd{^2 S}$) of this star is projected to be parallel to the line-of-sight by a factor, $\mu$. Where $\mu$ is the cosine of the angle between the line-of-sight and the local normal where the specific intensity originated.
+
+  In this way, we completely ignore specific intensities originating perpendicularly from the top and bottom of the star (schematically given in \ref{fig:obsAnnulus}) and from the far-side (left-side in figure) of the star.
+  Also, the specific intensity originating from the center of the disk of the star as seen by the observer (the point on the far right-side of the figure) is not affected by the factor $\mu$ whereas those originating from an angle $\theta$ off of this line-of-sight are reduced by $\mu$.
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=300px]{images/obsSignificance}
+    \caption{\label{fig:obsAnnulus} Consider the annulus of differential area $\dd{^2S_{\theta\phi}}$}
+  \end{figure}
+
+  The $\dd{^2 S}$ from where the specific intensity originates subtends a differential solid angle element $\dd{^2\Omega} = \frac{\dd{^2 S}}{D^2}$ as seen by the distant observer.
+
+  Therefore, differential spectral radiative flux observed is
+
+  $$
+  \dd{F_{\lambda, obs}} = I_\lambda\dd{^2\Omega}
+  $$
+
+  On the surface of the star, the differential area element is $\dd{^2 S} = 2\pi r' \dd{r'}$. The radius that locates the annulus, $r'$, is related to the radius of the star by $r' = r\sin{\theta}$, so then $\dd{r'} = r\cos{\theta}\dd{\theta}$.
+
+  So then, the solid angle subtended by this surface area element is ...
+
+  \begin{align*}
+    \dd{^2\Omega} &= \frac{2\pi r' \dd{r'}}{D^2}\\
+    &= \frac{2\pi r^2 \sin{\theta}\cos{\theta}\dd{\theta}}{D^2}\\
+    &= \frac{2\pi r^2 \mu\dd{\mu}}{D^2}
+  \end{align*}
+
+  $$
+    \dd{^2\Omega} = 2\pi  \frac{r^2}{D^2} \mu\dd{\mu}
+  $$
+
+  So the actual spectral flux observed would be equal to ...
+
+  $$
+    F_{\lambda, obs} = 2\pi \frac{r^2}{D^2} \int_{0}^{1} I_\lambda(r, \lambda, t, \mu)  \mu\dd{\mu}
+  $$
+
+  In the limit of small $\theta$ (equivalent to $r<<D$) $\frac{r}{R} \approx \theta$ and $\frac{r}{R}\approx\frac{\alpha}{2}$.
+  Here, $\alpha$ is the angular stellar diameter.
+
+  So the observed spectral flux can be re-written as ...
+  $$
+    F_{\lambda, obs} = \frac{r^2}{D^2} F_{\lambda, surf} = \frac{\alpha^2}{2^2} F_{\lambda, surf}
+  $$
+
+  This enables observers to relate a known distance and radius to and of a distant star to the surface spectral flux of that star. Equivalently, if the star's angular diamter is known.
+
+  Above, the limits on $\mu$ go from $0 \rightarrow 1$ as opposed to the definition in \ref{eqn:surfFlux}. This is accounted for in an assumption that we get $0$ specific intensity from the far-side of the star--the side where $\mu \in [-1,0)$.
+
+  \begin{equation}
+    F_{\lambda, obs}(D, \lambda, t) = \frac{\alpha^2}{4} F_{\lambda, surf}(r, \lambda, t)\label{eqn:fluxObs2Surf}
+  \end{equation}
