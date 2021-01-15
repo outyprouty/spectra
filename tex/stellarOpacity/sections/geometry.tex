@@ -1,0 +1,393 @@
+  To my knowledge, Cartesian coordinates are not fundamental in any objective
+    way, they were just the first we formalized and so we consider them easy
+    and pretend to have a robust understanding of their properties.
+
+  For example, Cartesian coordinate representations of any vector is unique or
+    non-degenerate.
+  This is nice, but only true for some coordinate systems!
+  This is also very important, we don't want to be able to represent systems in
+    non-unique ways, any objective measure would be rendered useless.
+  Equivalently, perhaps
+    arithmetic based on degenerate coordinate systems might not have led us to
+    such a good language to interpret the natural world.
+  So how do we identify these non-degenerate coordiante systems?
+
+  Well, we say a coordinate system is non-degenerate (like Cartesian) if
+    we can demonstrate that the other coordinate system is isomorphic to
+    the Cartesian Coordinate System.
+  By `isomorphic`, I mean that there is a mapping from one space to another
+      that can be exactly reversed by an inverse mapping.
+  In the language of coordinate systems, we use metric tensors to figure this
+    out.
+
+
+  \subsection{Metric Tensor}
+  Super broadly, a metric tensor is a function that appears in differential
+    geometry.
+  The metric tensor gives definition to generalized mathematical spaces
+    (called manifolds) by relating real-number scalars to distances and
+    angles (in the case of positive-definite metric tensors).
+
+  One way to think of a metric tensor is as a rank-2 matrix, $g$.
+  For a Cartesian coordinate system, $g_{ij} = \delta_{ij}$ where $\delta$ is
+    the Kroenecker Delta function.
+  Without proof (again, sorry), I claim that if you can characterize a
+    coordinate system $A$ with metric tensor $g^A$, you can show that it is
+    isomorphic to the Cartesian Coordinate System by demonstrating that the
+    metric tensor is diagonalizable.
+  So, if a metric tensor is diagonalizable, there is an isomorphism between
+    that coordinate system and the Cartesian Coordinate system\footnote{ If the
+    metric is only locally diagonalizable, the manifold is only locally
+    isomorphic to the Cartesian Metric.}.
+  If a coordinate system is isomorphic to Cartesian, then it must also be
+    non-degenerate.
+
+  I'd like to drive home the importance of this in terms of mathematical
+    representations of physical systems. Again, isomorphisms are great!
+  They mean that we can move back and forth between representations
+    without losing information.
+
+  For example, you are probably aware that the 2-D map of the surface of the
+    (spherical) Earth *cannot* be perfectly mapped to a 2-D Cartesian
+    representation.
+  However! We can make arbitrarily accurate maps of small patches of the Earth.
+  This is because spherical coordinates define a representation
+    that is only locally diagonalizable in terms of its metric tensor.
+
+    \subsubsection{Scale Factors}
+    WHY IN THE 3-D CARTESIAN WORLD AM I BOTHERING WITH THIS?
+
+    Well, the various indeces of a metric are related to what are known as the
+      scale factors. Scale factors (in the context of metric tensors) tell you
+      how space transforms with respect to the coordinate parameters.
+    This idea is super important in general relativity when we introduce the
+      additional coordinate paramter $t$ and see that it depends on (e.g.) the
+      rate of change of the other coordinate parameters.
+
+    Happily, I am not going to forray into GR, but I will show you where else
+      scale factors play an important roles that has almost certainly between
+      glossed-over in your introductory physics and vector calculus courses.
+
+    For a diagonal (or even locally diagonal) metric tensor,
+      $g_{ij} = g_{ii}\delta_{ij}$ with the coordinate parameterization
+
+      \begin{align*}
+        x_1 &= f_1(q_1, q_2, \cdots, q_n)\\
+        x_2 &= f_2(q_1, q_2, \cdots, q_n)\\
+        &\cdots \\
+        x_n &= f_n(q_1, q_2, \cdots, q_n)
+      \end{align*}
+
+    The scale factor($h_i$) is simply the square root of the diagonal metric element!
+
+    That is,
+
+    \begin{equation}
+      h_i = \sqrt{g_{ii}} = \sqrt{\sum_{k=1}^n\Bigl(\frac{\partial x_k}{\partial q_i}\Bigr)^2}\label{eqn:scaleEqn}
+    \end{equation}
+
+    Here's the fun part (for me ...)
+
+    These scale factors allow us to transform any coordinate system differential
+      elements. Of particular use for this study is the line element,
+      the area element, and the volume element.
+
+    Taking each in turn ...
+    \paragraph{Line Element}
+      The line element is given in terms of scale factors and the above
+        coordinate parameterization as
+
+    \begin{equation}
+      \dd{\vec{l}} = h_1\dd{q_1}\hat{q_1} + h_2\dd{q_2}\hat{q_2} + \cdots + h_n\dd{q_n}\hat{q_n}\label{eqn:lineElem}
+    \end{equation}
+
+    \paragraph{Area Element}
+      The area element is given in terms of scale factors and the above
+        coordinate parameterization as
+
+    \begin{equation}
+      \dd{^2\vec{s}_{ab}} = h_ah_b\dd{q_a}\dd{q_b}\cdot (\hat{q_a}\times \hat{q_b})\label{eqn:areaElem}
+    \end{equation}
+
+      Where the cross product appears in order to orient the area element with
+        the generalized cross-product.
+
+    \paragraph{Volume Element}
+      The volume element is given in terms of scale factors and the above
+        coordinate parameterization as
+
+    \begin{equation}
+      \dd{^3V} = h_1h_2h_3\dd{q_1}\dd{q_2}\dd{q_3}\label{eqn:volumeElem}
+    \end{equation}
+
+      \subsection{Cartesian}
+        Let's quickly make use of these to define the differential elements of
+        our favorite simple coordinate system.
+
+        The Cartesian Metric Tensor is trivially diagonal. Therefore,
+          $g_{ij} = g_{ii}\delta_{ij}$ with the coordinate parameterization
+
+          \begin{align*}
+            x_1 &= x\\
+            x_2 &= y\\
+            x_3 &= z
+          \end{align*}
+
+          Recall equation \ref{eqn:scaleEqn}
+          $$
+          h_i = \sqrt{\sum_{k=1}^n\Bigl(\frac{\partial x_k}{\partial q_i}\Bigr)^2}
+          $$
+
+          \begin{align*}
+            h_x &= \sqrt{\sum_{k=1}^3\Bigl(\frac{\partial x_k}{\partial q_i}\Bigr)^2}\\
+            h_x &= \sqrt{\Bigl(\frac{\partial x}{\partial x}\Bigr)^2 +
+              \Bigl(\frac{\partial y}{\partial x}\Bigr)^2 +
+              \Bigl(\frac{\partial z}{\partial x}\Bigr)^2}\\
+            h_x &= \sqrt{\Bigl(1\Bigr)^2 +
+              \Bigl(0\Bigr)^2 +
+              \Bigl(0\Bigr)^2}\\
+            h_x &= 1
+          \end{align*}
+
+          The rest are easily seen to be $1$ as well!\\
+          \paragraph{Cartesian Scale Factors}
+          $h_x = 1; h_y = 1; h_z = 1$
+
+          Now, recalling equations \ref{eqn:lineElem}, \ref{eqn:areaElem}, \ref{eqn:volumeElem} ...
+          \begin{equation}
+            \dd{\vec{l}} = \dd{x}\hat{x} + \dd{y}\hat{y} + \dd{z}\hat{z}\label{eqn:cartLineElem}
+          \end{equation}
+
+          \begin{equation*}
+            \dd{^2\vec{s}_{xy}} = \dd{x}\dd{y} \cdot (\hat{x}\times \hat{y})
+          \end{equation*}
+          \begin{equation}
+            \dd{^2\vec{s}_{xy}} = \dd{x}\dd{y} \cdot \hat{z}\label{eqn:cartAreaElem}
+          \end{equation}
+          Note: Other combinations of the coordinates would generate other area elements!
+
+          \begin{equation}
+            \dd{^3V} = \dd{x}\dd{y}\dd{z}\label{eqn:cartVolumeElem}
+          \end{equation}
+
+      Easy!
+
+      \subsection{Spherical}
+      The Spherical Metric Tensor is only \emph{locally} diagonal. In spite of
+        this, we can still make use of $g_{ij} = g_{ii}\delta_{ij}$
+        \emph{locally} with regard to differential paramters. And define the
+        parameterization of the Cartesian Coordinates in terms of the Spherical
+        parameters: the radial distance, the polar angular distance, and the
+        azimuthal angular distance ($r, \theta, \phi$).
+
+        Figures \ref{fig:cart2Sph} and \ref{fig:spherical} give a schematic
+          for how Cartesian and Spherical Coordinate Systems are related.
+
+        The Cartesian Coordinate $x$ can be seen to be the radial distance
+          from the origin scaled and projected onto the $x-y$ plane. That is:
+          $x = r\sin{\theta}\cos{\phi}$.
+
+        Similarly, $y = r\sin{\theta}\sin{\phi}$ and $z = r\cos{\theta}$.
+
+        \begin{figure}[h]
+          \centering
+          \includegraphics[width=300px]{cartCoords}
+          \caption{\label{fig:cart2Sph} Along with }
+
+          \includegraphics[width=300px]{sphericalCoords}
+          \caption{\label{fig:spherical} Along with }
+        \end{figure}
+
+        In this parameterization below, note that
+          $(x_1, x_2, x_3) \rightarrow (x, y, z)$.
+        \begin{align*}
+          x_1 &= r\sin{\theta}\cos{\phi}\\
+          x_2 &= r\sin{\theta}\sin{\phi}\\
+          x_3 &= r\cos{\theta}
+        \end{align*}
+
+        Recall equation \ref{eqn:scaleEqn}
+        $$
+        h_i = \sqrt{\sum_{k=1}^n\Bigl(\frac{\partial x_k}{\partial q_i}\Bigr)^2}
+        $$
+        With the
+
+        \begin{align*}
+          h_r &= \sqrt{\sum_{k=1}^3\Bigl(\frac{\partial x_k}{\partial r}\Bigr)^2}\\
+          h_r &= \sqrt{\Bigl(
+            \frac{\partial x_1}{\partial r}\Bigr)^2
+            +\Bigl(\frac{\partial x_2}{\partial r}\Bigr)^2
+            +\Bigl(\frac{\partial x_3}{\partial r}\Bigr)^2}\\
+          h_r &= \sqrt{\Bigl(
+            \frac{\partial}{\partial r}r\sin{\theta}\cos{\phi}\Bigr)^2
+            +\Bigl(\frac{\partial}{\partial r}r\sin{\theta}\sin{\phi}\Bigr)^2
+            +\Bigl(\frac{\partial}{\partial r}r\cos{\theta}\Bigr)^2}\\
+          h_r &= \sqrt{
+             \sin{^2\theta}\cos{^2\phi}\Bigl(\frac{\partial}{\partial r}r\Bigr)^2
+            +\sin{^2\theta}\sin{^2\phi}\Bigl(\frac{\partial}{\partial r}r\Bigr)^2
+            +\cos{^2\theta}\Bigl(\frac{\partial}{\partial r}r\Bigr)^2}\\
+          h_r &= \sqrt{
+             \sin{^2\theta}\cos{^2\phi}\Bigl(1\Bigr)
+            +\sin{^2\theta}\sin{^2\phi}\Bigl(1\Bigr)
+            +\cos{^2\theta}\Bigl(1\Bigr)}\\
+          h_r &= \sqrt{\sin{^2\theta}(\underbrace{\cos{^2\phi} +\sin{^2\phi}}_{1; Pythagorean Identity}) +\cos{^2\theta}}\\
+          h_r &= \sqrt{\sin{^2\theta} +\cos{^2\theta}} = \sqrt{1^2} = 1
+        \end{align*}
+
+        \begin{align*}
+          h_\theta &= \sqrt{\sum_{k=1}^3\Bigl(\frac{\partial x_k}{\partial r}\Bigr)^2}\\
+          h_\theta &= \sqrt{\Bigl(
+            \frac{\partial x_1}{\partial \theta}\Bigr)^2
+            +\Bigl(\frac{\partial x_2}{\partial \theta}\Bigr)^2
+            +\Bigl(\frac{\partial x_3}{\partial \theta}\Bigr)^2}\\
+          h_\theta &= \sqrt{\Bigl(
+            \frac{\partial}{\partial \theta}r\sin{\theta}\cos{\phi}\Bigr)^2
+            +\Bigl(\frac{\partial}{\partial \theta}r\sin{\theta}\sin{\phi}\Bigr)^2
+            +\Bigl(\frac{\partial}{\partial \theta}r\cos{\theta}\Bigr)^2}\\
+          h_\theta &= \sqrt{
+            r^2\cos{^2\phi}\Bigl(\frac{\partial}{\partial \theta}\sin{\theta}\Bigr)^2
+            +r^2\sin{^2\phi}\Bigl(\frac{\partial}{\partial \theta}\sin{\theta}\Bigr)^2
+            +r^2\Bigl(\frac{\partial}{\partial \theta}\cos{\theta}\Bigr)^2}\\
+          h_\theta &= r\sqrt{\Bigl(
+            \cos{^2\phi}\Bigl(\cos{\theta}\Bigr)^2
+            +\sin{^2\phi}\Bigl(\cos{\theta}\Bigr)^2
+            +\Bigl(-\sin{\theta}\Bigr)^2}\\
+          h_\theta &= r\sqrt{
+            \cos{^2\phi}\cos{^2\theta}
+            +\sin{^2\phi}\cos{^2\theta}
+            +\sin{^2\theta}}\\
+          h_\theta &= r\sqrt{
+            \cos{^2\theta}(\underbrace{\cos{^2\phi} +\sin{^2\phi}}_{1; Pythagorean Identity})
+            +\sin{^2\theta}}\\
+          h_\theta &= r\sqrt{
+            \cos{^2\theta} +\sin{^2\theta}} = r \sqrt{1^2}
+        \end{align*}
+
+        Do the $\phi$ one! You should get $r\sin{\theta}$.
+
+        \paragraph{Spherical Scale Factors}
+        $h_r = 1; h_\theta = r; h_\phi = r\sin{\theta}$
+
+        Now, recalling equations \ref{eqn:lineElem}, \ref{eqn:areaElem}, \ref{eqn:volumeElem} ...
+        \begin{equation*}
+          \dd{\vec{l}} = h_r\dd{r}\hat{r} + h_\theta\dd{\theta}\hat{\theta} + h_\phi\dd{\phi}\hat{\phi}
+        \end{equation*}
+        \begin{equation}
+          \dd{\vec{l}} = \dd{r}\hat{r} + r\dd{\theta}\hat{\theta} + r\sin{\theta}\dd{\phi}\hat{\phi}\label{eqn:spherelineElem}
+        \end{equation}
+
+        \begin{equation*}
+          \dd{^2\vec{s}_{\theta\phi}} = h_\theta h_\phi \dd{\theta}\dd{\phi}\cdot (\hat{\theta}\times \hat{\phi})
+        \end{equation*}
+        \begin{equation*}
+          \dd{^2\vec{s}_{\theta\phi}} = r \cdot r\sin{\theta} \dd{\theta}\dd{\phi} \cdot \hat{r}
+        \end{equation*}
+        \begin{equation}
+          \dd{^2\vec{s}_{\theta\phi}} = r^2\sin{\theta} \dd{\theta}\dd{\phi}\hat{r}\label{eqn:sphereAreaElem}
+        \end{equation}
+        Note: Other combinations of the coordinates would generate other area elements!
+        Also note that $\dd{^2\vec{s}_{\theta\phi}}$ is oriented away from the
+          surface of the sphere, that is: in the radial direction.
+
+        \begin{equation*}
+          \dd{^3V} = h_r h_\theta h_\phi\dd{r}\dd{\theta}\dd{\phi}
+        \end{equation*}
+        \begin{equation}
+          \dd{^3V} = r^2\sin{\theta}\dd{r}\dd{\theta}\dd{\phi}\label{eqn:sphereVolumeElem}
+        \end{equation}
+
+        These definitions will be extemely useful moving forward!
+
+        \subsubsection{Solid Angle}
+          To start the discussion with solid angles, let us actually begin with
+            a surface integral over the entire area of a sphere. We will use
+            the definition of the spherical area element given in
+            \ref{eqn:sphereAreaElem}.
+
+          Recall that $\dd{^2\vec{s}_{\theta\phi}}$ is a vector quantity.
+          The direction is the unit normal to the area element.
+          This will be sometimes noted as an oriented area element or a
+            vector area element to distinguish it from uses of its magnitude.
+
+          $$
+            \oint_{sphere}\dd{^2\vec{s}_{\theta\phi}}
+          $$
+          We know that the area element along the coordiantes $\theta$ and
+          $\phi$ will have a unit normal pointing along the radial direction
+          away from the sphere.
+
+          In order to cover the entire sphere, $\theta$ must vary from $0$
+            (at the top of the sphere in \ref{fig:spherical}) to $\pi$ and
+            $\phi$ must then vary from $0$ to $2\pi$ along the great circle
+            containing the $x-y$ plane.
+
+          $$
+            \int_{0}^{2\pi}\int_{0}^{\pi}r^2\sin{\theta} \dd{\theta}\dd{\phi}\hat{r}\cdot\hat{r}
+          $$
+
+          A quick note on that $\hat{r}\cdot\hat{r}$, since the closed surface
+            integral also incurrs a normal component, the two appear here.
+          However, they're the same! So they result in $1$, by definition of a
+            unit normal vector.
+
+          What we're left with is actually fairly easy to solve!
+          First, we can pull
+            $r^2$ out of the integral, since it does not vary with $\theta$ or
+            $\phi$. Additionally, we can separate the two integrals fairly
+            cleanly!
+
+            $$
+              r^2\int_{0}^{2\pi}\dd{\phi} \cdot \int_{0}^{\pi}\sin{\theta} \dd{\theta}
+            $$
+
+            The $\phi$ integral readily goes to $2\pi$.
+            $$
+              r^2 \cdot 2\pi \cdot \int_{0}^{\pi}\sin{\theta} \dd{\theta}
+            $$
+
+            The $\theta$ integral is a only \emph{slightly} more complicated,
+              but happily yields $2$.
+            $$
+              r^2 \cdot 2\pi \cdot 2
+            $$
+            I will repeat that $\theta$ integral after substituting
+            $\mu = \cos{\theta}$ and $\dd{\mu} = -\sin{\theta}\dd{\theta}$
+            $$
+              r^2 \cdot 2\pi \cdot \int_{\mu(0)=1}^{\mu(\pi)=-1}-\dd{\mu}
+            $$
+            Flip the bounds to remove the $-$ sign ...
+            $$
+              r^2 \cdot 2\pi \cdot \int_{-1}^{1}\dd{\mu}
+            $$
+            And it's even easier to see that we end up with $2$.
+
+            Taking the product, we end up with the fact that the surface area
+              of a sphere is $4\pi r^2$. Agreed? GOOD.
+
+            Now, that $r^2$ actually gets us into a lot of trouble. In some
+              weird way, it specifies an otherwise generalizable sphere.
+
+            If we strip the $r^2$ from the $\dd{^2\vec{s}_{\theta\phi}}$, we're
+              actually left with an intriguing quantity that depends only on two
+              angular measures, $\theta$ and $\phi$.
+
+            \begin{equation}
+              \frac{\dd{^2\vec{s}_{\theta\phi}}}{r^2} = \sin{\theta}\dd{\theta}\hat{n}
+              \dd{\phi} =\dd{^2\Omega} \label{eqn:solidAngle}
+            \end{equation}
+
+            Where I change what has been $\hat{r}$ to a more general $\hat{n}$ for generality, that is, differential solid angles can exist anywhere in space, not necessarily tied to the distance from an origin, $r$.
+
+            It is important to note that the differential solid angle element implies a direction, namely $\hat{n}$.
+
+            By comparison to the surface integrals performed above, the integral of the differential solid angle over the entire sphere ($\theta \in [0, \pi] , \phi \in [0, 2\pi]$) yields $4\pi$.
+
+            \begin{equation}
+              \oint_{sphere}\dd{^2\Omega} = 4\pi \label{eqn:solidAngleSphere}
+            \end{equation}
+
+            In analogy with the radian for measure of a 1-D angle, the quantity we discuss here is built from a 2-D angle. It therefore is owed a new measure: $rad^2 = sr$--the steradian.
+
+            Just as one might claim a circle has $2\pi$ radians, a sphere has $4\pi$ steradians.
+
+            We'll see that defining quantities in terms of the solid angle and the differential element thereof allows for the calculation of important quantities that arise in astrophysics and astrophysical observation.

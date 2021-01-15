@@ -1,0 +1,40 @@
+\section{Specific Intensity}
+
+  The Specific Intensity is a differential, scalar quantity \footnote{In radiometry, this quantity is called the spectral radiance}:
+
+  $$
+  \frac{\dd I}{\dd \lambda} = I_\lambda(\vec{r}, \hat{n}, \lambda, t) =
+    \frac{\delta E}{\dd{\lambda} \dd{t} \dd{^2 S} \cos{\theta}\dd{^2\Omega} }
+  $$
+
+  Where $\delta E$ is the amount of energy transported by radiation belonging to the wavelength range $[\lambda, \lambda + \dd{\lambda}]$. That is,
+
+    $$
+    \delta E \approx E_\lambda \dd{\lambda} = \dd{E}
+    $$
+
+  The specific intensity therefore represents this amount of spectral, radiative energy that passes perpendicularly across an oriented area element ($\dd{^2\vec{S}}$) in unit time ($\dd{t}$) confined to a solid angle element ($\dd{^2\Omega}$).
+
+  The appearance of the $\cos{\theta}$ term in the denominator owes to the deconstruction of the oriented area element into its magnitude and direction. That is, the general oriented area element can be written as $\dd{^2\vec{S}} = \dd{^2S}\cdot \hat{s}$ with $\hat{s}$ representing the unit normal to the area element. We discussed this notation in spherical coordinates (i.e., \ref{eqn:sphereAreaElem}), but the potential orientation of an area element extends to all coordiante systems. Since the specific intensity is confined to a differential solid angle ($\dd{^2\Omega}$), the direction of the radiation is given by $\hat{n}$. For reasons we will discuss below, it is generally convienient to align the direction of propogation to the polar axis (or $z$-axis). Therefore, $\dd{^2\vec{S}}\dd{^2\Omega}$
+
+
+\subsection{Invariance}
+  Importantly, the use of the solid angle in the development of the specific intensity enables the quantity to be independent of the distance between the source and the observer\footnote{Provided there are no sources or sinks of radiant energy along $\hat{n}$}.
+
+  As an illustrative example without illustration, take $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} \cos{\theta}\dd{^2\Omega}$ as the amount of spectral, radiative energy that passes perpendicularly across an oriented area element $\dd{^2\vec{S}}$ in unit time confined to a solid angle element $\dd{^2\Omega}$.
+
+  Some distance $r$ away from $\dd{^2\vec{S}}$ is another oriented area element $\dd{^2\vec{S'}}$. As seen from $\dd{^2\vec{S'}}$, $\dd{^2\vec{S}}$ subtends a solid angle element $\dd{^2\Omega}$ and from $\dd{^2\vec{S}}$, $\dd{^2\vec{S'}}$ subtends a solid angle element $\dd{^2\Omega'}$.
+
+  That is, $\dd{^2\Omega} = \frac{\dd{^2\vec{S'}}}{r^2}$ and $\dd{^2\Omega'} = \frac{\dd{^2\vec{S}}}{r^2}$, both by \ref{eqn:solidAngle}.
+
+  So, by conservation of energy, $\delta E = I_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S} = I'_\lambda(\vec{r}, \hat{n}, \lambda, t)\dd{\lambda} \dd{t} \dd{^2 S'} \cos{\theta'}\dd{^2\Omega'}$. And $I_\lambda = I'_\lambda$. 
+
+
+
+
+
+\section{Flux-Vector}
+
+\section{Radiative Flux}
+
+\section{Observational Significance}

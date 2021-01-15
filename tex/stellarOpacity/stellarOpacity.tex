@@ -1,28 +1,44 @@
-\documentclass{article}
+\documentclass[notitlepage]{report}
 
-% Recommended, but optional, packages for figures and better typesetting:
-\usepackage{amsmath}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath, graphicx}
 
-% hyperref makes hyperlinks in the resulting PDF.
-% If your build breaks (sometimes temporarily if a hyperlink spans a page)
-% please comment out the following usepackage line and replace
-% \usepackage{icml2020} with \usepackage[nohyperref]{icml2020} above.
+
+
+\makeatletter
+\newcommand*{\toccontents}{\@starttoc{toc}}
+\newcommand*{\dd}{\,d{}}
+\makeatother
+
+
+
 \usepackage{hyperref}
-
-
-
-
-%\graphicspath{ {./images/} }
-%\DeclareGraphicsExtensions{.png}
+\graphicspath{ {./images/} }
+\DeclareGraphicsExtensions{.png}
+\title{Stellar Opacity}
+\author{R. Prouty}
 
 \begin{document}
+  \maketitle
+  \toccontents
+  %\label{introduction}
 
-\section{Introduction}
-\label{introduction}
-Testing 121211
-%    \input{./sections/introduction.tex}
+  \chapter{Geometry}
+    \input{./sections/geometry.tex}
 
-\bibliography{spectra}
+  \chapter{Radiation Field}
+    \input{./sections/radField.tex}
+
+  \chapter{}
 
 
+
+
+
+%\bibliography{spectra}
 \end{document}
+
+%\chapter{Spectral Lines}
+%  \input{./sections/kirchLaws.tex}
+
+%\chapter{Stellar Opacity}
