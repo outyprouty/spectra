@@ -1,9 +1,8 @@
 from spectraFuncs import *
 from numpy import linspace
 
-
-plotSpectrumOutput( "vega_full.spc", 9400, 3.90, -0.50, "vega"  )
-plotSpectrumOutput_waveLen("vega_full.spc", 9400, 3.90, -0.50, [8000.0, 8006.8], 1.0, "vega_NaI")
+#plotSpectrumOutput( "vega_full.spc", 9400, 3.90, -0.50, "vega"  )
+#plotSpectrumOutput_waveLen("vega_full.spc", 9400, 3.90, -0.50, [8000.0, 8006.8], 1.0, "vega_NaI")
 
 """
 def g(x, m, b):
@@ -24,3 +23,6 @@ print("Here is the documentation for the planckFunction:\n" + planckFunction.__d
 print("The value for the speed of light is %g Angstrom per second."%c)
 
 """
+from sys import argv
+#plotSpectrumOverPlanck(argv[1], int(argv[2]), 3.90, -0.50, [3000,10000], 'test')
+plotSpectrumOverSpectrumContinuum(argv[1],argv[2], int(argv[3]), 3.90, -0.50, [3000,10000], 'test')
