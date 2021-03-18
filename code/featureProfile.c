@@ -6,20 +6,15 @@
 	h= 6.62607004*10**-22 #um^2kg s^-1
 	Kb = 1.38*10**-11 #um2 kg s-2 K-1
 */
-#define H 6.62607004e-22
-#define K 1.38e-11
-#define C 3e14
-#define SCALAR 119269260.72
-#define EXPCONST 14404.5
+
 
 double planckWL(double T, double wl){
-	wl = wl * 10000.0;
-	double ans, expArg;
-	expArg = EXPCONST/T/wl;
-	ans 	= pow(exp( expArg ) - 1.0, -1.0);
-	ans 	*= SCALAR;
-	ans 	/= (wl*wl*wl*wl*wl);
-	printf("%f \t %f\n",wl/10000., ans);
+	double w = wl / 1.0e4;
+	double c1, c2, ans;
+	c1 	= 1.191042e8; //Wm-2sr-1um-1
+	c2 	= 1.4387752e4;//Kum
+	ans = c1/(w*w*w*w*w*(exp(c2/w/T) - 1.0));
+	ans /= 1.0e4;
 	return ans;
 }
 
@@ -57,14 +52,15 @@ double normGaussian(double x, double mean, double std){
 	return ans;
 }
 
-void generateContinuum(double start, double end, double R, double T, double* wls, double* spec){
+void generateContinuum(double start, double end, double R, double T, double* spec){
 	//Check to see if res is NULL
 	//IF not
+	double w;
 	double resolution = getResolution(start, end, R);
 	int numPts =  getNumPoints(start, end, R);
 	for(int i = 0; i < numPts; i++){
-		wls[i] 	= start + i*resolution;
-		spec[i] = planckWL(T, wls[i]);
+		w 		= start + i*resolution;
+		spec[i] = planckWL(T, w);
 	}
 }
 
@@ -84,7 +80,7 @@ void generateFeature(double start, double end, double R, double mean, double std
 	int numPts =  (end - start) / resolution;
 	double wl = start;
 	for(int i = 0; i < numPts; i++){
-		res[i] = height * normGaussian(wl + i*resolution, mean, std);
+		res[i] += height * normGaussian(wl + i*resolution, mean, std);
 	}	
 }
 
@@ -120,6 +116,16 @@ void writeSpecToFile(double start, double end, double R, char* fileName, double*
 
 	}
 
+void normalize(double start, double end, double R, double T, double* spec){
+    double w;
+    double resolution = getResolution(start, end, R);
+    int numPts =  getNumPoints(start, end, R);
+    for(int i = 0; i < numPts; i++){
+        w       = start + i*resolution;
+        spec[i] /= planckWL(T, w);
+    }
+}
+
 int main(){
 	double* wls;
 	double* spc;
@@ -133,9 +139,11 @@ int main(){
 	spc = (double*)calloc(numPts, sizeof(double));
 
 	generateWLs(start, end, R, wls);
-	generateContinuum(start, end, R, 5800, wls, spc);
+	generateContinuum(start, end, R, 5800, spc);
 
-	generateFeature(start, end, R, 9008., 10.0, -5.0, spc);	
+	generateFeature(start, end, R, 9008., 10.0, -500.0, spc);	
+
+	normalize(start, end, R, 5800, spc);
 
 	writeSpecToFile(start, end, R, "test", wls, spc);
 
