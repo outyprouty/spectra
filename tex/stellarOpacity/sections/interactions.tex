@@ -32,12 +32,41 @@
     \begin{equation}
       \delta E = \chi(r, \lambda, t, \mu)I_\lambda(r, \lambda, t, \mu)\dd{^2S}\dd{s}\dd{\lambda}\dd{t}\dd{^2\Omega}\label{eqn:extinctionC}
     \end{equation}
-    in spectral region $\lambda$ of width $\dd{\lambda}$ in a time $\dd{t}$. The extinction coefficient is the product of an atomic absorption cross-section ($m^2$) and the number density of absorbers ($m^{-3}$) summed over all of the states that can interact with photons of wavelength $\lambda$. The dimensions of $\chi$ are therefore $m^{-1}$ with the inverse of $chi$ giving the distance a photon can propogate before it is removed from the ray. This $\frac{1}{\chi}$ is also called the \emph{mean free path} of the photon.
+    in spectral region $\lambda$ of width $\dd{\lambda}$ in a time $\dd{t}$. The extinction coefficient is the product of an atomic absorption cross-section ($m^2$) and the number density of absorbers ($m^{-3}$) summed over all of the states that can interact with photons of wavelength $\lambda$. The dimensions of $\chi$ are therefore $m^{-1}$ with the inverse of $\chi$ giving the distance a photon can propogate before it is removed from the ray. This $\chi^{-1}$ is also called the \emph{mean free path} of the photon.
 
-    The extinction properties of a material are generally isotropic. Interaction with moving materials introduces angular dependences due to Doppler Shifts in various frames.
+    The extinction properties of a material are generally isotropic. Interaction with moving materials introduces angular dependences due to Doppler Shifts in various frames. Said another way, the absorption or scattering of radiation by matter is generally agnostic of the direction of incidence for the specific intensity.
 
-    We say `extinction' instead of `absorption' to include scattering processes. We assume outright that absorption and scattering processes occur independently and add linearly.
+    We say `extinction' instead of `absorption' to include scattering processes. We assume outright that absorption and scattering processes occur independently and add linearly\footnote{How good of an assumption is this? Does it depend on thermodynamic properties of the material? E.g., temperature and density?}.
 
     $$
       \chi(r, \lambda, t) = \underbrace{\kappa(r, \lambda, t)}_{Absorption} + \underbrace{\sigma(r, \lambda, t)}_{Scattering}
     $$
+
+\section{Emission Coefficient}
+
+  The macroscopic emission coefficient is defined such that an element of
+   matter of cross-section $\dd{^2S}$ and length $\dd{s}$ contributes an amount
+    of energy $\delta{E}$ into solid angle $\dd{^2\Omega}$ within wavelength
+     band $\dd{\lambda}$ in direction $\hat{n}$ in time $\dd{t}$.
+
+  $$
+    \delta{E} = \eta(r, \hat{n}, \lambda, t)\dd{^2S}\dd{s}\dd{^2\Omega}\dd{\lambda}\dd{t}
+  $$
+
+
+\section{LTE}
+
+  Great! We've now written down a formulation for the extinction and emission coefficients of specific intensity by matter! This is a macroscopic description of the rate at which matter removes or adds radiant energy from or to a beam of radiation (the specific intensity). Uhhhh ... KINDA.
+
+  Let me explain. These coefficients described above depend on the microscopic states that the material finds itself in. For example, material sufficiently excited to be partially ionized will extinct and emit light very differently than that same material in a state of full ionization or even no ionization. I don't mean to be focusing on ionization, either. The material's elections could enjoy a relative abundance of excited electrons. This changes the microscopic energy landscape of the material and affects the radiative processes to varying degrees.
+
+  So these coefficients that describe the interaction between matter and the radiation field actually very strongly couple to the radiation field itself! Materials enjoying relative abundance of excited electrons may have seen these electrons elevated by past interactions with the radiation field!
+
+  More precisely, the rate of energy removal from the radiation field or emission into the radiation field is determined by the radiation field via photoexcitiations, photoionizations, radiative emission, radiative recombination, and related processes. The reality of the situation is therefore that the interaction between the radiation field and matter is nonlinear. Ugh.
+
+  What to do ... WELL, let's happily ignore it! Let's pretend the interactions between the radiation field and matter is strictly linear.
+
+  How can we get away with this? We've just described the processes that govern the exchange of energy between the radiation field and the thermal pool also determine the microscopic thermal energy states of the material. These microscopic thermal energy states of the material in turn govern the rate of energy exchange! If we assume that the ambient temperature and density are stable in a region of material, we are at the same time saying that this stability is driven by an equilibrium with respect to this energy exchange. So if we assume \emph{Local Thermodynamic Equilibrium} (LTE), then we can treat the extinction coefficient as determined for the region for which LTE applies.
+
+  Now the question becomes, what is LTE? And how appropriate is this assumption?
+  Let's address that later and for now play pretend!
