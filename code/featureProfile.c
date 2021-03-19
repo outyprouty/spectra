@@ -8,7 +8,7 @@
 */
 
 
-double planckWL(double T, double wl){
+double planckWL(double T, double wl){ //func
 	double w = wl / 1.0e4;
 	double c1, c2, ans;
 	c1 	= 1.191042e8; //Wm-2sr-1um-1
@@ -18,41 +18,41 @@ double planckWL(double T, double wl){
 	return ans;
 }
 
-double getResolution(double start, double end, double R){
+double getResolution(double start, double end, double R){ //func
 	return start/R;
 }
 
-int getNumPoints(double start, double end, double R){
+int getNumPoints(double start, double end, double R){ //func
 	double resolution = start/R;
         int numPts =  (end - start) / resolution;
 	return numPts;
 }
 
-int indexOfWL(double start, double end, double R, double wl_query){	
+int indexOfWL(double start, double end, double R, double wl_query){ //func
         double resolution = getResolution(start, end, R);
 	int idx = (end - wl_query)/resolution;
 	return idx;
 }
-double gaussian(double x, double mean, double std){
+double gaussian(double x, double mean, double std){ //func
 	double ans, arg;
 	arg = (x - mean)/std;
 	ans = exp(-0.5*arg*arg);
 	return ans;
 }
-double gaussianNormFact(double std){
+double gaussianNormFact(double std){ //func
 	double ans;
 	ans = pow(std * sqrt(2.0*M_PI), -1.0 );
 	return ans;
 }
 
-double normGaussian(double x, double mean, double std){
+double normGaussian(double x, double mean, double std){ //func
 	double ans, factor;
 	factor  = gaussianNormFact(std);
 	ans	= factor * gaussian(x, mean, std);
 	return ans;
 }
 
-void generateContinuum(double start, double end, double R, double T, double* spec){
+void generateContinuum(double start, double end, double R, double T, double* spec){ //func
 	//Check to see if res is NULL
 	//IF not
 	double w;
@@ -65,7 +65,7 @@ void generateContinuum(double start, double end, double R, double T, double* spe
 }
 
 /* Define R as start/dWL */
-void generateWLs(double start, double end, double R, double* res){
+void generateWLs(double start, double end, double R, double* res){ //func
 	//Check to see if res is NULL
 	//IF not
 	double resolution = getResolution(start, end, R);
@@ -75,7 +75,7 @@ void generateWLs(double start, double end, double R, double* res){
 	}
 }
 
-void generateFeature(double start, double end, double R, double mean, double std, double height, double* res){	
+void generateFeature(double start, double end, double R, double mean, double std, double height, double* res){ //func
 	double resolution = start/R;
 	int numPts =  (end - start) / resolution;
 	double wl = start;
@@ -84,7 +84,7 @@ void generateFeature(double start, double end, double R, double mean, double std
 	}	
 }
 
-void writeSpecToFile(double start, double end, double R, char* fileName, double* wls, double* spec){
+void writeSpecToFile(double start, double end, double R, char* fileName, double* wls, double* spec){ //func
 	FILE* fPtr;
 	char str[30];
 	/* 
@@ -116,7 +116,7 @@ void writeSpecToFile(double start, double end, double R, char* fileName, double*
 
 	}
 
-void normalize(double start, double end, double R, double T, double* spec){
+void normalize(double start, double end, double R, double T, double* spec){ //func
     double w;
     double resolution = getResolution(start, end, R);
     int numPts =  getNumPoints(start, end, R);
@@ -126,7 +126,15 @@ void normalize(double start, double end, double R, double T, double* spec){
     }
 }
 
-int main(){
+void createDoubleArr(int numPts, double *arr){ //func
+	arr = (double*)calloc(numPts, sizeof(double));
+}
+
+void freeArr(double* arr){ //func
+	free(arr);
+}
+
+/*int main(int argc, char** argv){
 	double* wls;
 	double* spc;
 	double start, end, R;
@@ -135,19 +143,20 @@ int main(){
 	R	= 1000.0;
 
 	int numPts = getNumPoints(start, end, R);
-	wls = (double*)calloc(numPts, sizeof(double));
-	spc = (double*)calloc(numPts, sizeof(double));
+	createDoubleArr(numPts, wls);
+	createDoubleArr(numPts, spc);
 
 	generateWLs(start, end, R, wls);
 	generateContinuum(start, end, R, 5800, spc);
 
 	generateFeature(start, end, R, 9008., 10.0, -500.0, spc);	
-
-	normalize(start, end, R, 5800, spc);
-
+	
+	if(argc > 1){
+		normalize(start, end, R, 5800, spc);
+	}
 	writeSpecToFile(start, end, R, "test", wls, spc);
 
-	free(wls);
-	free(spc);
+	freeArr(wls);
+	freeArr(spc);
 	return 0;
-}
+}*/
